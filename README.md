@@ -5,6 +5,7 @@ Numerical algebraic computation in Haskell
 Just starting out
 
 # Contents
+Empty
 
 # ToDo's
 - Direct linear solving:
