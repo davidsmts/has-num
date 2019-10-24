@@ -27,7 +27,7 @@ matrixMult a b = matrixMultTransposed a (transpose b)
 matrixMultTransposed  :: [[Int]] -> [[Int]] -> [[Int]]
 matrixMultTransposed (x:xs) b
     | xs == [] = rowByColumns x b : []
-    | otherwise = (rowByColumns x b) : (matrixMult xs b)
+    | otherwise = (rowByColumns x b) : (matrixMultTransposed xs b)
 
 
 rowByColumns :: [Int] -> [[Int]] -> [Int]
