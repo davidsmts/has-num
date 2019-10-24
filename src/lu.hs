@@ -13,17 +13,4 @@ each :: [Int] -> Int -> [Int]
 each (x:xs) p = 
     | xs == [] = x/p : []
     | otherwise = x/p : each xs 
-
-
-matrixMult :: [[Int]] -> [[Int]] -> [[Int]]
-matrixMult (x:xs) (y:ys) = 
-    | xs == [] && ys != [] = 
-    | xs == [] && ys == [] = 
-    | otherwise = 
-
-rowByColumn :: [Int] -> [[Int]] -> Int
-rowByColumn (x:xs) (y:ys) =
-    | xs != [] and ys == [] = 
-    | xs == [] and ys != [] = x*y : []
-    | xs == [] && ys == [] = 
-    | otherwise = 
+ 
