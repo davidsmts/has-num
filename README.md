@@ -5,9 +5,12 @@ Numerical algebraic computation in Haskell
 Just starting out with basic Matrix math
 
 # Contents
-Empty
+Up Until now only with Integer
+- transpose
+- matrix multiplication
 
 # ToDo's
+- Use other datatypes then Int
 - Basic Matrix math
 - Direct linear solving:
 
