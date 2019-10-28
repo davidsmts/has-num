@@ -2,12 +2,13 @@
 Numerical algebraic computation in Haskell
 
 # Current state
-Just starting out
+Just starting out with basic Matrix math
 
 # Contents
 Empty
 
 # ToDo's
+- Basic Matrix math
 - Direct linear solving:
 
 - Matrix factorization:
