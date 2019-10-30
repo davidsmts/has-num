@@ -1,6 +1,12 @@
 module Matrix (
     transpose,
-    matrixMult
+    matrixMult,
+    unit,
+    zero,
+    zeroV,
+    xMatrix,
+    changeXtoY,
+    xVector
 ) where
 
 
