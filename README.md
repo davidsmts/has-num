@@ -10,10 +10,18 @@ Up Until now only with Integer
 - matrix multiplication
 
 # ToDo's
-- Use other datatypes then Int
-- Basic Matrix math
+- Handy Shit:
+  - Use other datatypes then Int
+  - Basic Matrix math
+  - Create Matrix:
+    - Lower Triangle
+    - Upper Triangle
+    - Unit
+    - Diagonal zero
+  
 - Direct linear solving:
-
+  -
+  
 - Matrix factorization:
   - QR
   - LU
