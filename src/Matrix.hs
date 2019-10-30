@@ -17,6 +17,13 @@ xMatrix rowDim colDim val
 zero :: Int -> Int -> [[Int]]
 zero rowDim colDim = xMatrix rowDim colDim 0
 
+unit :: Int -> [[Int]]
+unit dim = unitCnt dim dim
+
+unitCnt :: Int -> Int -> [[Int]]
+unitCnt dim dimCnt
+    | dimCnt-1 == 0   = fillOneV 1 dimCnt dim : []
+    | otherwise     = (fillOneV 1 dimCnt dim) : (unitCnt dim (dimCnt-1))
 
 --
 -- Vector stuff
