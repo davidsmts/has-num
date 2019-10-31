@@ -2,7 +2,7 @@
 Numerical algebraic computation in Haskell
 
 # Current state
-Just starting out with basic Matrix math
+Working on this r.a. 5h a week
 
 # Contents
 Up Until now only with Integer
