@@ -8,17 +8,21 @@ Just starting out with basic Matrix math
 Up Until now only with Integer
 - transpose
 - matrix multiplication
+- handy functions to create matrix / vector
+- 
 
 # ToDo's
 - Handy Shit:
   - Use other datatypes then Int
-  - Basic Matrix math
+  - Basic Matrix math with easy to use operators
   - Create Matrix:
     - Lower Triangle
     - Upper Triangle
     - Unit
     - Diagonal zero
-  
+    - certain diagonal
+    - quadratic matrix
+    
 - Direct linear solving:
   -
   
