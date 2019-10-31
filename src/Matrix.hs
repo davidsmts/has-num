@@ -3,9 +3,11 @@ module Matrix (
     matrixMult,
     unit,
     zero,
-    xMatrix
+    xMatrix,
+    Matrix
 ) where
 
+-- imports
 import Vector
 
 -- Matrix type
@@ -25,7 +27,7 @@ zero rowDim colDim = xMatrix rowDim colDim 0
 unit :: Int -> Matrix
 unit dim = unitCnt dim dim
 
-unitCnt :: Int -> Int -> [[Int]]
+unitCnt :: Int -> Int -> Matrix
 unitCnt dim dimCnt
     | dimCnt-1 == 0   = fillOneV 1 dimCnt dim : []
     | otherwise     = (fillOneV 1 dimCnt dim) : (unitCnt dim (dimCnt-1))
@@ -50,27 +52,27 @@ vecPlode (x:xs)
     | xs == []  = [[x]]
     | otherwise = [x] : (vecPlode xs)
 
-arrConn :: [[Int]] -> [[Int]] -> [[Int]]
+arrConn :: Matrix -> Matrix -> Matrix
 arrConn (x:xs) (y:ys)
     | xs == []  = [x ++ y]
     | otherwise = (x ++ y) : (arrConn xs ys)
 
 
-matrixMult :: [[Int]] -> [[Int]] -> [[Int]]
+matrixMult :: Matrix -> Matrix -> Matrix
 matrixMult a b = matrixMultTransposed a (transpose b)
 
 
-matrixMultTransposed  :: [[Int]] -> [[Int]] -> [[Int]]
+matrixMultTransposed  :: Matrix -> Matrix -> Matrix
 matrixMultTransposed (x:xs) b
     | xs == [] = rowByColumns x b : []
     | otherwise = (rowByColumns x b) : (matrixMultTransposed xs b)
 
 
-rowByColumns :: [Int] -> [[Int]] -> [Int]
+rowByColumns :: Vector -> Matrix -> Vector
 rowByColumns a (x:xs)
     | xs == [] = (rowByColumn a x) : []
     | otherwise = (rowByColumn a x) : (rowByColumns a xs)
 
-rowByColumn :: [Int] -> [Int] -> Int
+rowByColumn :: Vector -> Vector -> Int
 rowByColumn [] [] = 0
 rowByColumn (x:xs) (y:ys) = x*y + (rowByColumn xs ys)
