@@ -42,13 +42,15 @@ changeXtoY (x:xs) ix y
     | ix == x   = y : changeXtoY xs ix y
     | otherwise = x : changeXtoY xs ix y
 
--- doesnt work yet
 changeItoY :: [Int] -> Int -> Int -> [Int]
-changeItoY (x:xs) i y
+changeItoY list i y = changeItoYunder list (length list - i - 1) y
+
+changeItoYunder :: [Int] -> Int -> Int -> [Int]
+changeItoYunder (x:xs) i y
     | xs == []          = if ((length xs) == i )
                             then y : [] else x: []
-    | (length xs) == i  = y : changeItoY xs i y
-    | otherwise         = x : changeItoY xs i y
+    | (length xs) == i  = y : changeItoYunder xs i y
+    | otherwise         = x : changeItoYunder xs i y
 
 fillOneV :: Int -> Int -> Int -> [Int]
 fillOneV x y dim
