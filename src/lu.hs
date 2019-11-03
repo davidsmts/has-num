@@ -22,30 +22,9 @@ oand1till (x:xs) i till
     | i == till = x : (oand1till xs (i+1) till)
     | otherwise = x : (oand1till xs i till)
 
--- l :: Matrix -> 
--- l (x:xs) i 
---     | xs == []  = (oand1till x 0 i) : []
---     | otherwise = (oand1till x 0 i) : (l xs (i+1))
+l :: Matrix -> Int -> Matrix
+l a i
+    | (length a)-1 == i = vecPlode (oand1till (head a) 0 i)
+    | otherwise         = arrConn (vecPlode (oand1till (vectorDiv (column a i) ak) 0 i)) (l a (i+1))
+    where ak = (a !! i) !! i -- diagonal element
 
-column :: Matrix -> Int -> Vector
-column (x:xs) i
-    | xs == []  = x !! i : []
-    | otherwise = x !! i : (column xs i)
-
-
--- lu ::  [[Int]] -> ([[Int]], [[Int]])
--- lu (x:xs) = 
---     | xs == [] = (1,x)
---     | otherwise =
---         let ak = head x
---             bk = tail x
---             lk = each bk ak
---             Akp1 = 
---         in ([[]], [[]])
-
-
--- each :: [Int] -> Int -> [Int]
--- each (x:xs) p = 
---     | xs == [] = x/p : []
---     | otherwise = x/p : each xs 
- 

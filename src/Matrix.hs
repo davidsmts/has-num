@@ -4,7 +4,10 @@ module Matrix (
     unit,
     zero,
     xMatrix,
-    Matrix
+    Matrix,
+    column,
+    arrConn,
+    vecPlode
 ) where
 
 -- imports
@@ -32,6 +35,13 @@ unitCnt :: Int -> Int -> Matrix
 unitCnt dim dimCnt
     | dimCnt-1 == 0   = fillOneV 1 dimCnt dim : []
     | otherwise     = (fillOneV 1 dimCnt dim) : (unitCnt dim (dimCnt-1))
+
+
+-- other
+column :: Matrix -> Int -> Vector
+column (x:xs) i
+    | xs == []  = x !! i : []
+    | otherwise = x !! i : (column xs i)
 
 --todo
 -- upperTri :: Int -> [[Int]]
