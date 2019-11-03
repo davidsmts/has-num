@@ -11,6 +11,7 @@ module Matrix (
 import Vector
 
 -- Matrix type
+-- Row ordered
 type Matrix = [[Int]]
 
 
@@ -57,7 +58,7 @@ arrConn (x:xs) (y:ys)
     | xs == []  = [x ++ y]
     | otherwise = (x ++ y) : (arrConn xs ys)
 
-
+-- row-ordered
 matrixMult :: Matrix -> Matrix -> Matrix
 matrixMult a b = matrixMultTransposed a (transpose b)
 
