@@ -5,14 +5,15 @@ module Vector (
     zeroV,
     fillOneV,
     Vector,
-    vectorDiv
+    vectorDiv,
+    vectorSub
 ) where
 
     
 --
 -- create vector type
 --
-type Vector = [Int]
+data Vector a = Vector [a]
 --
 
 --
@@ -40,6 +41,11 @@ zeroV dim = xVector dim 0
 --
 -- Vector operations
 --
+
+vectorSub :: Vector -> Vector -> Vector
+vectorSub (x:xs) (y:ys)
+    | xs == []  = x-y : []
+    | otherwise = x-y : vectorSub xs ys
 
 vectorDiv :: Vector -> Int -> Vector
 vectorDiv (x:xs) quotient
