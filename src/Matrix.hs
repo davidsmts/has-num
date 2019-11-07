@@ -4,13 +4,17 @@ module Matrix (
     unit,
     zero,
     xMatrix,
-    Matrix
+    Matrix,
+    column,
+    arrConn,
+    vecPlode
 ) where
 
 -- imports
 import Vector
 
 -- Matrix type
+-- Row ordered
 type Matrix = [[Int]]
 
 
@@ -31,6 +35,13 @@ unitCnt :: Int -> Int -> Matrix
 unitCnt dim dimCnt
     | dimCnt-1 == 0   = fillOneV 1 dimCnt dim : []
     | otherwise     = (fillOneV 1 dimCnt dim) : (unitCnt dim (dimCnt-1))
+
+
+-- other
+column :: Matrix -> Int -> Vector
+column (x:xs) i
+    | xs == []  = x !! i : []
+    | otherwise = x !! i : (column xs i)
 
 --todo
 -- upperTri :: Int -> [[Int]]
@@ -57,7 +68,7 @@ arrConn (x:xs) (y:ys)
     | xs == []  = [x ++ y]
     | otherwise = (x ++ y) : (arrConn xs ys)
 
-
+-- row-ordered
 matrixMult :: Matrix -> Matrix -> Matrix
 matrixMult a b = matrixMultTransposed a (transpose b)
 

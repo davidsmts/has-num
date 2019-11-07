@@ -22,6 +22,7 @@ Up Until now only with Integer
     - Diagonal zero
     - certain diagonal
     - quadratic matrix
+    - split function that gives out two triangulars
     
 - Direct linear solving:
   -

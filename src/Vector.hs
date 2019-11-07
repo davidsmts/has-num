@@ -4,7 +4,8 @@ module Vector (
     xVector,
     zeroV,
     fillOneV,
-    Vector
+    Vector,
+    vectorDiv
 ) where
 
     
@@ -40,6 +41,10 @@ zeroV dim = xVector dim 0
 -- Vector operations
 --
 
+vectorDiv :: Vector -> Int -> Vector
+vectorDiv (x:xs) quotient
+    | xs == []  = (x `div` quotient) : []
+    | otherwise = (x `div` quotient) : (vectorDiv xs quotient)
 
 changeXtoY :: Vector -> Int -> Int -> Vector
 changeXtoY (x:xs) ix y
