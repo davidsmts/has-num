@@ -7,8 +7,7 @@ module Matrix (
     Matrix,
     column,
     arrConn,
-    vecPlode,
-    matrixSub
+    vecPlode
 ) where
 
 -- imports
@@ -16,7 +15,7 @@ import Vector
 
 -- Matrix type
 -- Row ordered
-data Matrix a = [[a]]
+type Matrix = [[Int]]
 
 
 -- Matrix creation
@@ -73,10 +72,6 @@ arrConn (x:xs) (y:ys)
 matrixMult :: Matrix -> Matrix -> Matrix
 matrixMult a b = matrixMultTransposed a (transpose b)
 
-matrixSub :: Matrix -> Matrix -> Matrix
-matrixSub (x:xs) (y:ys)
-    | xs == []  = vectorSub x y : []
-    | otherwise = vectorSub x y : matrixSub xs ys
 
 matrixMultTransposed  :: Matrix -> Matrix -> Matrix
 matrixMultTransposed (x:xs) b
