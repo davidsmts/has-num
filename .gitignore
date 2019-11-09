@@ -1,8 +1,13 @@
+.stack-work/
+num-linalg.cabal
+*~
+.DS_Store
 dist
 dist-*
 cabal-dev
 *.o
 *.hi
+*.hie
 *.chi
 *.chs.h
 *.dyn_o
@@ -20,4 +25,3 @@ cabal.project.local
 cabal.project.local~
 .HTF/
 .ghc.environment.*
-.DS_Store
