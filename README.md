@@ -1,10 +1,16 @@
 # num-linalg
 Numerical algebraic computation in Haskell
-aka work in construction
-Just a collection of weird bugs or error messages
+aka collection of weird bugs or error messages
 
 # Current state
-Working on this r.a. 5h a week
+Just a work in progress
+
+# Get Started
+- Get Stack : https://docs.haskellstack.org/en/stable/README/
+- stack setup
+- stack build
+- stack exec num-linalg-exe
+- ghci LU.hs -i ../Matrix ../Vector
 
 # Contents
 Up Until now only with Integer
