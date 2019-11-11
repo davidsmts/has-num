@@ -16,7 +16,11 @@ import Vector
 
 -- Matrix type
 -- Row ordered
-data Matrix a = [[a]]
+data Matrix a = Matrix [[a]] deriving Eq
+
+instance Num a => Num (Matrix a)
+    where
+        (Matrix a) + (Matrix b) = Matrix $ matrixAdd a b 
 
 
 -- Matrix creation
@@ -77,6 +81,12 @@ matrixSub :: Matrix -> Matrix -> Matrix
 matrixSub (x:xs) (y:ys)
     | xs == []  = vectorSub x y : []
     | otherwise = vectorSub x y : matrixSub xs ys
+
+matrixAdd :: Matrix -> Matrix -> Matrix
+matrixAdd (x:xs) (y:ys)
+    | xs == []  = vectorAdd x y : []
+    | otherwise = vectorAdd x y : matrixAdd xs ys
+    
 
 matrixMultTransposed  :: Matrix -> Matrix -> Matrix
 matrixMultTransposed (x:xs) b

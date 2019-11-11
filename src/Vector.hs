@@ -13,7 +13,11 @@ module Vector (
 --
 -- create vector type
 --
-type Vector (a :: Eq) = [a]
+data Vector a = Vector [a] deriving Eq
+
+instance Num a => Num (Vector a)
+    where
+        (Vector a) + (Vector b) = Vector $ vectorAdd a b
 --
 
 --
@@ -41,6 +45,12 @@ zeroV dim = xVector dim 0
 --
 -- Vector operations
 --
+
+vectorAdd :: Vector a -> Vector a -> Vector a
+vectorAdd (x:xs) (y:ys)
+    | xs == []  = x+y : []
+    | otherwise = x+y : vectorAdd xs ys
+
 
 vectorSub :: Vector a -> Vector a -> Vector a
 vectorSub (x:xs) (y:ys)
