@@ -23,6 +23,8 @@ Up Until now only with Integer
 - quadratic matrix
 
 # ToDo's
+- Continous Integration
+- Tests for all existing features
 - Handy Shit:
   - Use Num Type instead of fixating on Int :(
   - Basic Matrix math with easy to use operators
