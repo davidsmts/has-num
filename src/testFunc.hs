@@ -25,9 +25,10 @@ instance Num a => Num (Vector a)
 --
 
 data Matrix a = Matrix [[a]] deriving (Eq, Show)
-
 instance Num a => Num (Matrix a)
 
+matrixAdd :: Matrix a -> Matrix a -> Matrix a
+matrixAdd x y = y
 
 
 -- matrixAdd :: Matrix a -> Matrix a -> Matrix a
