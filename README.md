@@ -31,7 +31,6 @@ Up Until now only with Integer
   - Create Matrix:
     - Lower Triangle
     - Upper Triangle
-    - Diagonal zero
     - split function that gives out two triangulars
     
 - Direct linear solving:
@@ -40,6 +39,7 @@ Up Until now only with Integer
 - Matrix factorization:
   - QR
   - LU
+    - Pivotsearch
   - Cholesky
   -
   
