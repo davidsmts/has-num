@@ -46,8 +46,8 @@ column (x:xs) i
 --todo
 -- upperTri :: Int -> [[Int]]
 -- upperTri dim
---     | 
---     | otherwise = 
+--     |
+--     | otherwise =
 
 
 -- mathematical operations
@@ -87,3 +87,7 @@ rowByColumns a (x:xs)
 rowByColumn :: Vector -> Vector -> Int
 rowByColumn [] [] = 0
 rowByColumn (x:xs) (y:ys) = x*y + (rowByColumn xs ys)
+
+--Determinant
+determinant :: Matrix -> Integer
+determinant [[]] = 0
