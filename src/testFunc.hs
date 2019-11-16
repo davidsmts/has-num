@@ -19,23 +19,32 @@
 -- create vector type
 --
 data Vector a = Vector [a] deriving (Eq, Show)
+
+vectorAdd :: Num a => [a] ->  [a] -> [a]
+vectorAdd x y = zipWith (+) x y
+
+
 instance Num a => Num (Vector a)
+    where 
+        (Vector a) + (Vector b) = Vector $ vectorAdd a b
+        (-)                     = undefined
+        (*)                     = undefined
+        negate                  = undefined
+        abs                     = undefined
+        signum                  = undefined
+        fromInteger             = undefined
+
 --
 
 --
-data Matrix a = Matrix [[a]] deriving (Eq, Show)
-instance Num a => Num (Matrix a)
+-- data Matrix a = Matrix [[a]] deriving (Eq, Show)
+-- instance Num a => Num (Matrix a)
 --
 
 -- test functions
-matrixAdd :: Matrix a -> Matrix a -> Matrix a
-matrixAdd x y = y
+-- matrixAdd :: Matrix a -> Matrix a -> Matrix a
+-- matrixAdd x y = y
 
-
-vectorAdd :: Vector a -> Vector a -> [a]
-vectorAdd (Vector (x:xs)) (Vector (y:ys))
-    | length xs == 0 = x+y : []
-    | otherwise = x+y : vectorAdd (Vector xs) (Vector ys)
 
 
 -- vectorAdd :: Vector a -> Vector a -> Vector a
