@@ -73,6 +73,12 @@ matrixMult :: Matrix -> Matrix -> Matrix
 matrixMult a b = matrixMultTransposed a (transpose b)
 
 
+matrixAdd :: Matrix -> Matrix -> Matrix
+matrixAdd (x:xs) (y:ys)
+    | xs == []  = vectorAdd x y : []
+    | otherwise = vectorAdd x y : matrixAdd xs ys
+    
+
 matrixMultTransposed  :: Matrix -> Matrix -> Matrix
 matrixMultTransposed (x:xs) b
     | xs == [] = rowByColumns x b : []
