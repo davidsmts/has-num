@@ -23,14 +23,19 @@ data Vector a = Vector [a] deriving (Eq, Show)
 vectorAdd :: Num a => [a] ->  [a] -> [a]
 vectorAdd x y = zipWith (+) x y
 
+vecAbs :: (Ord a,Num a) => [a] ->  [a]
+vecAbs [] = []
+vecAbs (x:xs)
+    | x < 0     = -x : vecAbs xs
+    | otherwise = x : vecAbs xs
 
-instance Num a => Num (Vector a)
+instance (Ord a,Num a) => Num (Vector a)
     where 
         (Vector a) + (Vector b) = Vector $ vectorAdd a b
-        (-)                     = undefined
-        (*)                     = undefined
-        negate                  = undefined
-        abs                     = undefined
+        (Vector a) - (Vector b) = Vector $ zipWith (-) a b
+        (Vector a) * (Vector b) = Vector $ zipWith (*) a b
+        -- negate (Vector a)       = Vector $ zipWith (-) (zero (length a)) a
+        abs (Vector a)          = Vector $ vecAbs a
         signum                  = undefined
         fromInteger             = undefined
 
