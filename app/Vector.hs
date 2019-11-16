@@ -5,19 +5,14 @@ module Vector (
     zeroV,
     fillOneV,
     Vector,
-    vectorDiv,
-    vectorSub
+    vectorDiv
 ) where
 
     
 --
 -- create vector type
 --
-data Vector a = Vector [a] deriving Eq
-
-instance Num a => Num (Vector a)
-    where
-        (Vector a) + (Vector b) = Vector $ vectorAdd a b
+type Vector = [Int]
 --
 
 --
