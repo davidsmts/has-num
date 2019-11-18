@@ -70,18 +70,24 @@ changeXtoY (Vector (x:xs)) ix y
     | ix == x   = Vector (y : values (changeXtoY (Vector xs) ix y))
     | otherwise = Vector (x : values (changeXtoY (Vector xs) ix y))
 
--- changeItoY :: Vector a -> Int -> Int -> Vector a
--- changeItoY list i y = changeItoYunder list (length list - i - 1) y
+-- todo put changeItoY and changeItoYunder into one function
+-- Changes number at:i to value:y
+-- parent function to changeItoYunder
+changeItoY :: Num a => Vector a -> Int -> a -> Vector a
+changeItoY list i y = changeItoYunder list ((length $ values list)-i-1) y
 
--- changeItoYunder :: Vector a -> Int -> Int -> Vector a
--- changeItoYunder (x:xs) i y
---     | xs == []          = if ((length xs) == i )
---                             then y : [] else x: []
---     | (length xs) == i  = y : changeItoYunder xs i y
---     | otherwise         = x : changeItoYunder xs i y
+-- Changes number at:i to value:y with index 
+-- child function to changeItoY
+changeItoYunder :: Num a => Vector a -> Int -> a -> Vector a
+changeItoYunder (Vector (x:xs)) i y
+    | xs == []          = if ((length xs) == i )
+                            then Vector [y] else Vector [x]
+    | (length $ xs) == i  = Vector $ y : values (changeItoYunder (Vector xs) i y)
+    | otherwise         = Vector $ x : values (changeItoYunder (Vector xs) i y)
 
--- fillOneV :: Int -> Int -> Int -> Vector a
--- fillOneV x y dim
---     | dim == 0  = []
---     | y == dim  = x : fillOneV x y (dim-1)
---     | otherwise = 0 : fillOneV x y (dim-1)
+-- Create vector where entry at index:y has the value of:x
+fillOneV :: Num a => a -> Int -> Int -> Vector a
+fillOneV x y dim
+    | dim == 0  = []
+    | y == dim  = x : fillOneV x y (dim-1)
+    | otherwise = 0 : fillOneV x y (dim-1)
