@@ -33,15 +33,17 @@ Up Until now only with Integer
     - Upper Triangle
     - split function that gives out two triangulars
     
-- Direct linear solving:
-  - to come
-  
 - Matrix factorization:
   - QR
   - LU
     - Pivotsearch
   - Cholesky
   -
+  
+- Iterative solving:
+  - Gauß-Seidel
+  - Jacobi
+  - CG
   
 - Problems with eigenvalues:
   - vector iteration
