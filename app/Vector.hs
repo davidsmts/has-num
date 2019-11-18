@@ -1,12 +1,12 @@
--- module Vector (
---     changeXtoY,
---     changeItoY,
---     xVector,
---     zeroV,
---     fillOneV,
---     Vector,
---     vectorDiv
--- ) where
+module Vector (
+    changeXtoY,
+    changeItoY,
+    xVector,
+    zeroV,
+    fillOneV,
+    Vector,
+    vectorDiv
+) where
 
     
 --
@@ -38,7 +38,7 @@ xVector dim val
     | dim == 0  = (Vector [])
     | otherwise = Vector $ (val : values (xVector (dim - 1) val))
 
-
+-- Vector with zeros of dimension: dim
 zeroV :: Num a => Int -> Vector a
 zeroV dim = xVector dim 0
 
@@ -56,11 +56,19 @@ zeroV dim = xVector dim 0
 -- Vector operations
 --
 
+-- returns a list with the positive version of the vector
 vecAbs :: (Ord a,Num a) => [a] ->  [a]
 vecAbs [] = []
 vecAbs (x:xs)
     | x < 0     = -x : vecAbs xs
     | otherwise = x : vecAbs xs
+
+-- divides all values of an vector by a quotient
+vectorDiv :: (Eq a, Num a, Fractional a) => Vector a -> a -> Vector a
+vectorDiv (Vector (x:xs)) quotient
+    | xs == []  = Vector $ [(x / quotient)]
+    | otherwise = Vector $ (x / quotient) : values (vectorDiv (Vector xs) quotient)
+    
 
 -- Changes all appearances of a certain number, to another number
 changeXtoY :: (Eq a,Num a) => Vector a -> a -> a -> Vector a
