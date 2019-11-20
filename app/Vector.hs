@@ -4,7 +4,7 @@ module Vector (
     xVector,
     zeroV,
     fillOneV,
-    Vector,
+    Vector (..),
     vectorDiv
 ) where
 
