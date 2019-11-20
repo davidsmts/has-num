@@ -8,7 +8,7 @@ module Vector (
     vectorDiv
 ) where
 
-    
+
 --
 -- create vector type
 --
@@ -17,7 +17,7 @@ data Vector a = Vector {
     } deriving (Eq, Show, Ord)
 
 instance (Ord a, Num a) => Num (Vector a)
-    where 
+    where
         (Vector a) + (Vector b) = Vector $ zipWith (+) a b
         (Vector a) - (Vector b) = Vector $ zipWith (-) a b
         (Vector a) * (Vector b) = Vector $ zipWith (*) a b
@@ -45,8 +45,8 @@ zeroV dim = xVector dim 0
 -- todo
 -- onesTill :: Int -> Int -> [Int]
 -- onesTill dim a
---     | a == 0    = 
---     | otherwise = 
+--     | a == 0    =
+--     | otherwise =
 
 -- todo
 -- onesFrom :: Int -> [Int]
@@ -57,7 +57,7 @@ zeroV dim = xVector dim 0
 --
 
 -- returns a list with the positive version of the vector
-vecAbs :: (Ord a,Num a) => [a] ->  [a]
+vecAbs :: (Ord a,Num a) => [a] -> [a]
 vecAbs [] = []
 vecAbs (x:xs)
     | x < 0     = -x : vecAbs xs
@@ -68,7 +68,7 @@ vectorDiv :: (Eq a, Num a, Fractional a) => Vector a -> a -> Vector a
 vectorDiv (Vector (x:xs)) quotient
     | xs == []  = Vector $ [(x / quotient)]
     | otherwise = Vector $ (x / quotient) : values (vectorDiv (Vector xs) quotient)
-    
+
 
 -- Changes all appearances of a certain number, to another number
 changeXtoY :: (Eq a,Num a) => Vector a -> a -> a -> Vector a
@@ -84,7 +84,7 @@ changeXtoY (Vector (x:xs)) ix y
 changeItoY :: (Eq a, Num a) => Vector a -> Int -> a -> Vector a
 changeItoY list i y = changeItoYunder list ((length $ values list)-i-1) y
 
--- Changes number at:i to value:y with index 
+-- Changes number at:i to value:y with index
 -- child function to changeItoY
 changeItoYunder :: (Eq a, Num a) => Vector a -> Int -> a -> Vector a
 changeItoYunder (Vector (x:xs)) i y
