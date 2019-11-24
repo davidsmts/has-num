@@ -57,23 +57,23 @@ xMatrix rowDim colDim val
     | rowDim == 0   = Matrix []
     | otherwise     = Matrix ((values (xVector colDim val)) : vals (xMatrix (rowDim-1) colDim val))
 
--- zero :: Int -> Int -> Matrix
--- zero rowDim colDim = xMatrix rowDim colDim 0
+zero :: Num a => Int -> Int -> Matrix a
+zero rowDim colDim = xMatrix rowDim colDim 0
 
--- unit :: Int -> Matrix
--- unit dim = unitCnt dim dim
+unit :: (Eq a, Num a) => Int -> Matrix a
+unit dim = unitCnt dim dim
 
--- unitCnt :: Int -> Int -> Matrix
--- unitCnt dim dimCnt
---     | dimCnt-1 == 0   = fillOneV 1 dimCnt dim : []
---     | otherwise     = (fillOneV 1 dimCnt dim) : (unitCnt dim (dimCnt-1))
+unitCnt :: (Eq a, Num a) => Int -> Int -> Matrix a
+unitCnt dim dimCnt
+    | dimCnt-1 == 0   = Matrix (fillOneV 1 dimCnt dim : [])
+    | otherwise     = Matrix $ (fillOneV 1 dimCnt dim) : vals (unitCnt dim (dimCnt-1))
 
 
--- -- other
--- column :: Matrix -> Int -> Vector
--- column (x:xs) i
---     | xs == []  = x !! i : []
---     | otherwise = x !! i : (column xs i)
+-- other
+column :: Matrix a -> Int -> [a]
+column (Matrix (x:xs)) i
+    | xs == []  = x !! i : []
+    | otherwise = x !! i : (column xs i)
 
 --todo
 -- upperTri :: Int -> [[Int]]
