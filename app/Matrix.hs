@@ -52,10 +52,10 @@ matrixSub (Matrix (x:xs)) (Matrix(y:ys))
 
 -- Matrix creation
 
--- xMatrix :: Int -> Int -> Int -> Matrix
--- xMatrix rowDim colDim val
---     | rowDim == 0   = []
---     | otherwise     = (xVector colDim val) : (xMatrix (rowDim-1) colDim val)
+xMatrix :: Num a => Int -> Int -> a -> Matrix a
+xMatrix rowDim colDim val
+    | rowDim == 0   = Matrix []
+    | otherwise     = Matrix ((values (xVector colDim val)) : vals (xMatrix (rowDim-1) colDim val))
 
 -- zero :: Int -> Int -> Matrix
 -- zero rowDim colDim = xMatrix rowDim colDim 0
