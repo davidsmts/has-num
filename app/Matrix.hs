@@ -17,7 +17,7 @@ import Vector
 -- Row ordered
 --
 data Matrix a = Matrix {
-    vals :: [[a]]
+    values :: [[a]]
     } deriving (Eq, Show, Ord)
 
 instance (Ord a, Num a) => Num (Matrix a)
@@ -34,17 +34,17 @@ instance (Ord a, Num a) => Num (Matrix a)
 -- matrixAdd :: (Ord a, Num a) => Matrix a -> Matrix a -> Matrix a
 -- matrixAdd (Matrix (x:xs)) (Matrix(y:ys))
 --     | length xs == 0  = Matrix $ values ((Vector x) + (Vector y)) : []
---     | otherwise = Matrix (values ((Vector x) + (Vector y)) : vals (matrixAdd (Matrix xs) (Matrix ys)))
+--     | otherwise = Matrix (values ((Vector x) + (Vector y)) : values (matrixAdd (Matrix xs) (Matrix ys)))
 
 matrixAdd :: Num a => Matrix a -> Matrix a -> Matrix a
 matrixAdd (Matrix (x:xs)) (Matrix(y:ys))
     | length xs == 0  = Matrix $ zipWith (+) x y : []
-    | otherwise = Matrix $ zipWith (+) x y : vals (matrixAdd (Matrix xs) (Matrix ys))
+    | otherwise = Matrix $ zipWith (+) x y : values (matrixAdd (Matrix xs) (Matrix ys))
     
 matrixSub :: Num a => Matrix a -> Matrix a -> Matrix a
 matrixSub (Matrix (x:xs)) (Matrix(y:ys))
     | length xs == 0  = Matrix $ zipWith (-) x y : []
-    | otherwise = Matrix $ zipWith (-) x y : vals (matrixSub (Matrix xs) (Matrix ys))
+    | otherwise = Matrix $ zipWith (-) x y : values (matrixSub (Matrix xs) (Matrix ys))
         
         
     
@@ -54,8 +54,8 @@ matrixSub (Matrix (x:xs)) (Matrix(y:ys))
 
 xMatrix :: Num a => Int -> Int -> a -> Matrix a
 xMatrix rowDim colDim val
-    | rowDim == 0   = Matrix []
-    | otherwise     = Matrix ((values (xVector colDim val)) : vals (xMatrix (rowDim-1) colDim val))
+    | rowDim == 0   = Matrix $ []
+    | otherwise     = Matrix $ (xVector colDim val) : values (xMatrix (rowDim-1) colDim val)
 
 zero :: Num a => Int -> Int -> Matrix a
 zero rowDim colDim = xMatrix rowDim colDim 0
@@ -66,14 +66,13 @@ unit dim = unitCnt dim dim
 unitCnt :: (Eq a, Num a) => Int -> Int -> Matrix a
 unitCnt dim dimCnt
     | dimCnt-1 == 0   = Matrix (fillOneV 1 dimCnt dim : [])
-    | otherwise     = Matrix $ (fillOneV 1 dimCnt dim) : vals (unitCnt dim (dimCnt-1))
+    | otherwise     = Matrix $ (fillOneV 1 dimCnt dim) : values (unitCnt dim (dimCnt-1))
 
 
 -- other
-column :: Matrix a -> Int -> [a]
-column (Matrix (x:xs)) i
-    | xs == []  = x !! i : []
-    | otherwise = x !! i : (column xs i)
+column :: Num a => Matrix a -> Int -> [a]
+column (Matrix []) i = []
+column (Matrix (x:xs)) i = x !! i : (column (Matrix xs) i)
 
 --todo
 -- upperTri :: Int -> [[Int]]
