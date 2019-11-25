@@ -46,9 +46,6 @@ matrixSub (Matrix (x:xs)) (Matrix(y:ys))
     | length xs == 0  = Matrix $ zipWith (-) x y : []
     | otherwise = Matrix $ zipWith (-) x y : values (matrixSub (Matrix xs) (Matrix ys))
         
-        
-    
-
 
 -- Matrix creation
 
@@ -83,44 +80,37 @@ column (Matrix (x:xs)) i = x !! i : (column (Matrix xs) i)
 
 -- mathematical operations
 
--- transpose :: Matrix -> Matrix
--- transpose (x:xs)
---     | xs == []  = vecPlode x
---     | otherwise = arrConn (vecPlode x) (transpose xs)
+transpose :: Num a => Matrix a -> Matrix a
+transpose (Matrix (x:xs))
+    | length xs == 0  = vecPlode x
+    | otherwise = matrixConn (vecPlode x) (transpose (Matrix xs))
 
 
--- vecPlode :: Vector -> Matrix
--- vecPlode (x:xs)
---     | xs == []  = [[x]]
---     | otherwise = [x] : (vecPlode xs)
+vecPlode :: Num a => [a] -> Matrix a
+vecPlode (x:xs)
+    | length xs == 0  = Matrix $ [[x]]
+    | otherwise = Matrix $ [x] : (values (vecPlode xs))
 
--- arrConn :: Matrix -> Matrix -> Matrix
--- arrConn (x:xs) (y:ys)
---     | xs == []  = [x ++ y]
---     | otherwise = (x ++ y) : (arrConn xs ys)
+matrixConn :: Num a => Matrix a -> Matrix a -> Matrix a
+matrixConn (Matrix (x:xs)) (Matrix (y:ys))
+    | length xs == 0  = Matrix $ [x ++ y]
+    | otherwise = Matrix $ (x ++ y) : values (matrixConn (Matrix xs) (Matrix ys))
 
--- row-ordered
--- matrixMult :: Matrix -> Matrix -> Matrix
--- matrixMult a b = matrixMultTransposed a (transpose b)
+-- row-ordered Matrix Multiplication
+matrixMult :: Num a => Matrix a -> Matrix a -> Matrix a
+matrixMult (Matrix a) (Matrix b) = matrixMultTransposed a (transpose b)
 
+matrixMultTransposed  :: Num a => Matrix a -> Matrix a -> Matrix a
+matrixMultTransposed (Matrix (x:xs)) (Matrix b)
+    | xs == [] = rowByColumns x b : []
+    | otherwise = (rowByColumns x b) : (matrixMultTransposed xs b)
+     
 
--- matrixSub :: Matrix -> Matrix -> Matrix
--- matrixSub (x:xs) (y:ys)
---     | xs == []  = vectorAdd x y : []
---     | otherwise = vectorAdd x y : matrixAdd xs ys
-        
+rowByColumns :: Num a => [a] -> Matrix a -> [a]
+rowByColumns a (Matrix (x:xs))
+    | xs == [] = (rowByColumn a x) : []
+    | otherwise = (rowByColumn a x) : (rowByColumns a xs)
 
--- matrixMultTransposed  :: Matrix -> Matrix -> Matrix
--- matrixMultTransposed (x:xs) b
---     | xs == [] = rowByColumns x b : []
---     | otherwise = (rowByColumns x b) : (matrixMultTransposed xs b)
-
-
--- rowByColumns :: Vector -> Matrix -> Vector
--- rowByColumns a (x:xs)
---     | xs == [] = (rowByColumn a x) : []
---     | otherwise = (rowByColumn a x) : (rowByColumns a xs)
-
--- rowByColumn :: Vector -> Vector -> Int
--- rowByColumn [] [] = 0
--- rowByColumn (x:xs) (y:ys) = x*y + (rowByColumn xs ys)
+rowByColumn :: [a] -> [a] -> a
+rowByColumn [] [] = 0
+rowByColumn (x:xs) (y:ys) = x*y + (rowByColumn xs ys)
