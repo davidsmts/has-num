@@ -24,7 +24,7 @@ instance (Ord a, Num a) => Num (Matrix a)
     where
         a + b = matrixAdd a b
         a - b = matrixSub a b
-        -- (Matrix a) * (Matrix b) = Matrix $ matrixMult a b
+        a * b = matrixMult a b
         -- negate (Vector a)       = Vector $ zipWith (-) (zero (length a)) a
         -- abs (Vector a)          = Vector $ vecAbs a
         signum                  = undefined
