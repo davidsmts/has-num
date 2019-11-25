@@ -98,19 +98,20 @@ matrixConn (Matrix (x:xs)) (Matrix (y:ys))
 
 -- row-ordered Matrix Multiplication
 matrixMult :: Num a => Matrix a -> Matrix a -> Matrix a
-matrixMult (Matrix a) (Matrix b) = matrixMultTransposed a (transpose b)
+matrixMult a b = matrixMultTransposed a (transpose b)
 
 matrixMultTransposed  :: Num a => Matrix a -> Matrix a -> Matrix a
-matrixMultTransposed (Matrix (x:xs)) (Matrix b)
-    | xs == [] = rowByColumns x b : []
-    | otherwise = (rowByColumns x b) : (matrixMultTransposed xs b)
+matrixMultTransposed (Matrix (x:xs)) b
+    | length xs == 0 = Matrix $ (rowByColumns x b) : []
+    | otherwise = Matrix $ (rowByColumns x b) : values (matrixMultTransposed (Matrix xs) b)
      
 
 rowByColumns :: Num a => [a] -> Matrix a -> [a]
 rowByColumns a (Matrix (x:xs))
-    | xs == [] = (rowByColumn a x) : []
-    | otherwise = (rowByColumn a x) : (rowByColumns a xs)
+    | length xs == 0 = (rowByColumn a x) : []
+    | otherwise = (rowByColumn a x) : (rowByColumns a (Matrix xs))
 
-rowByColumn :: [a] -> [a] -> a
-rowByColumn [] [] = 0
-rowByColumn (x:xs) (y:ys) = x*y + (rowByColumn xs ys)
+rowByColumn :: Num a => [a] -> [a] -> a
+rowByColumn (x:xs) (y:ys)
+    | length xs == 0 = x * y
+    | otherwise = x*y + (rowByColumn xs ys)
