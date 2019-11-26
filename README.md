@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/davidsmts/num-linalg/tree/workthetype.svg?style=svg)](https://circleci.com/gh/davidsmts/num-linalg/tree/workthetype)
+[![CircleCI](https://circleci.com/gh/davidsmts/num-linalg/tree/master.svg?style=svg)](https://circleci.com/gh/davidsmts/num-linalg/tree/master)
 
 # num-linalg
 Numerical algebraic computation in Haskell
