@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/davidsmts/num-linalg/tree/workthetype.svg?style=svg)](https://circleci.com/gh/davidsmts/num-linalg/tree/workthetype)
+
 # num-linalg
 Numerical algebraic computation in Haskell
 aka collection of weird bugs or error messages
