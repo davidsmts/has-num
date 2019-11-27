@@ -25,23 +25,27 @@ Up Until now only with Integer
 - quadratic matrix
 
 # ToDo's
+- Continous Integration
+- Tests for all existing features
 - Handy Shit:
   - Use Num Type instead of fixating on Int :(
   - Basic Matrix math with easy to use operators
   - Create Matrix:
     - Lower Triangle
     - Upper Triangle
-    - Diagonal zero
     - split function that gives out two triangulars
     
-- Direct linear solving:
-  - to come
-  
 - Matrix factorization:
   - QR
   - LU
+    - Pivotsearch
   - Cholesky
   -
+  
+- Iterative solving:
+  - Gauß-Seidel
+  - Jacobi
+  - CG
   
 - Problems with eigenvalues:
   - vector iteration
