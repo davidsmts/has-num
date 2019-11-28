@@ -1,13 +1,12 @@
 module Matrix (
-    -- transpose,
-    -- matrixMult,
-    -- unit,
-    -- zero,
-    -- xMatrix,
-    -- Matrix,
-    -- column,
-    -- arrConn,
-    -- vecPlode
+    transpose,
+    matrixMult,
+    unit,
+    zero,
+    xMatrix,
+    Matrix(..),
+    column,
+    vecPlode
 ) where
 
 -- imports
