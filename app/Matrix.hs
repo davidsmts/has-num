@@ -30,6 +30,9 @@ instance (Ord a, Num a) => Num (Matrix a)
         fromInteger             = undefined
 
 
+instance Show (Num a) => Num (Matrix a) where
+    show (Matrix (x:xs)) = "(" ++ show x ++ ")\n" ++ show (Matrix xs)
+
 -- matrixAdd :: (Ord a, Num a) => Matrix a -> Matrix a -> Matrix a
 -- matrixAdd (Matrix (x:xs)) (Matrix(y:ys))
 --     | length xs == 0  = Matrix $ values ((Vector x) + (Vector y)) : []
