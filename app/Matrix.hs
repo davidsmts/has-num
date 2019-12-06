@@ -17,7 +17,7 @@ import Vector
 --
 data Matrix a = Matrix {
     values :: [[a]]
-    } deriving (Eq, Show, Ord)
+    } deriving (Eq, Ord)
 
 instance (Ord a, Num a) => Num (Matrix a)
     where
@@ -30,8 +30,10 @@ instance (Ord a, Num a) => Num (Matrix a)
         fromInteger             = undefined
 
 
-instance Show (Num a) => Num (Matrix a) where
-    show (Matrix (x:xs)) = "(" ++ show x ++ ")\n" ++ show (Matrix xs)
+instance (Num a, Show a) => Show (Matrix a) where
+    show (Matrix (x:xs))
+        | length xs == 0    = show x
+        | otherwise         = show x ++ "\n" ++ show (Matrix xs)
 
 -- matrixAdd :: (Ord a, Num a) => Matrix a -> Matrix a -> Matrix a
 -- matrixAdd (Matrix (x:xs)) (Matrix(y:ys))
