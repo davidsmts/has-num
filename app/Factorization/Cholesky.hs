@@ -1,26 +1,32 @@
 module Cholesky (
-    cholesky
+    -- cholesky
 ) where
 
 import Matrix
 
-cholesky :: Num a => Matrix a -> Matrix a
-cholesky a = cholesky_iterator a (length values a)
+-- cholesky :: Num a => Matrix a -> Matrix a
+-- cholesky a = cholesky_iterator a (length values a)
 
-cholesky_iterator :: Num a => Matrix a -> Int -> Matrix a
-cholesky_iterator (Matrix x) i
-    | length x - 2 == i = cholesky_col (Matrix x) i : []
-    | otherwise         = cholesky_col (Matrix x) i : cholesky_iterator (Matrix x) (i-1)
+-- cholesky_iterator :: Num a => Matrix a -> Int -> Matrix a
+-- cholesky_iterator (Matrix x) i
+--     | length x - 2 == i = cholesky_col (Matrix x) i : []
+--     | otherwise         = cholesky_col (Matrix x) i : cholesky_iterator (Matrix x) (i-1)
 
-cholesky_col :: Floating a => Matrix a -> Int -> Matrix a
-cholesky_col (Matrix x) i
-    | i == 0    = column_ops 
-    | i == lenx = 
-    | otherwise = 
-    where
-        lenx = length x
-        diag = (x !! i) !! i
-        
+-- cholesky_col :: Floating a => Matrix a -> Int -> Matrix a
+-- cholesky_col (Matrix x) i
+--     | i == 0    = column_ops 
+--     | i == lenx = 
+--     | i < lenx  = 
+--     | otherwise = 
+--     where
+--         lenx = length x
+--         diag = (x !! i) !! i
+
+cholesky_sum :: Floating a => Matrix a -> Int -> Int -> a
+cholesky_sum (Matrix a) i j
+    | length (x:xs)-j-1 <= 0 = 0
+    | otherwise             = (x !! i) * (x !! j) + (cholesky_sum (Matrix xs) i j)
+
 -- todo umschreiben, sodass von vorne nach hinten abgearbeitet wird
 column_ops :: Floating a => [a] -> [a] -> [a]
 column_ops arr [] = []

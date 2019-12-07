@@ -6,7 +6,8 @@ module Matrix (
     xMatrix,
     Matrix(..),
     column,
-    vecPlode
+    vecPlode,
+    withoutColumn
 ) where
 
 -- imports
@@ -70,10 +71,18 @@ unitCnt dim dimCnt
     | otherwise     = Matrix $ (fillOneV 1 dimCnt dim) : values (unitCnt dim (dimCnt-1))
 
 
--- other
+-- returns column i
 column :: Num a => Matrix a -> Int -> [a]
 column (Matrix []) i = []
 column (Matrix (x:xs)) i = x !! i : (column (Matrix xs) i)
+
+-- returns all Matrix without column i
+-- iteration counter needed
+withoutColumn :: Num a => Matrix a -> Int -> Int -> Matrix a
+withoutColumn a i cnt
+    | length (values a) == cnt = (Matrix [])
+    | cnt == i  = withoutColumn a i (cnt+1)
+    | otherwise = Matrix ((column a cnt) : values (withoutColumn a i (cnt+1)))
 
 --todo
 -- upperTri :: Int -> [[Int]]
