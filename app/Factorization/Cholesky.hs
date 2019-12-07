@@ -22,10 +22,14 @@ import Matrix
 --         lenx = length x
 --         diag = (x !! i) !! i
 
+-- not iterating over rows (x:xs). But instead over columns (see "where")
 cholesky_sum :: Floating a => Matrix a -> Int -> Int -> a
-cholesky_sum (Matrix a) i j
-    | length (x:xs)-j-1 <= 0 = 0
-    | otherwise             = (x !! i) * (x !! j) + (cholesky_sum (Matrix xs) i j)
+cholesky_sum (Matrix a) j i
+    | length a-j-1 <= 0 = 0
+    | otherwise         = (x_col !! i) * (x_col !! j) + (cholesky_sum xs_col i j)
+    where 
+        x_col = column (Matrix a) 0              -- to iterate over columns
+        xs_col = withoutColumn (Matrix a) 0 0    -- also to iterate over columns
 
 -- todo umschreiben, sodass von vorne nach hinten abgearbeitet wird
 column_ops :: Floating a => [a] -> [a] -> [a]
