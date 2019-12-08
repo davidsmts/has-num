@@ -31,6 +31,12 @@ cholesky_sum (Matrix a) j i
         x_col = column (Matrix a) 0              -- to iterate over columns
         xs_col = withoutColumn (Matrix a) 0 0    -- also to iterate over columns
 
+
+sum_till :: Floating a => Matrix a -> a
+sum_till (Matrix (x:xs)) i
+    | length xs == i+1 = y*y + (sum_till (Matrix (ys):xs))
+    | otherwise = 
+
 -- todo umschreiben, sodass von vorne nach hinten abgearbeitet wird
 column_ops :: Floating a => [a] -> [a] -> [a]
 column_ops arr [] = []

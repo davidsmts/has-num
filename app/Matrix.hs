@@ -91,6 +91,11 @@ withoutColumn a i cnt
 --     | otherwise = 
 
 
+cut0s_U :: Num a => Matrix a -> Matrix a
+cut0s_U (Matrix (x:xs))
+    | (length x) / 2 == 
+    | otherwise = 
+
 -- mathematical operations
 
 transpose :: Num a => Matrix a -> Matrix a
