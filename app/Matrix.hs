@@ -90,11 +90,26 @@ withoutColumn a i cnt
 --     | 
 --     | otherwise = 
 
+--todo find good way to iterate two dimensionally
+-- cuts a matrix into a Upper triangle matrix
+-- cut0s_U :: Num a => Matrix a -> Matrix a
+-- cut0s_U (Matrix a) = do
+--     (x, row) <- enumerate a
+--     (y, cell) <- enumerate row
+--     if length row <= (length cell) / 2 then
 
-cut0s_U :: Num a => Matrix a -> Matrix a
-cut0s_U (Matrix (x:xs))
-    | (length x) / 2 == 
-    | otherwise = 
+--todo column form of matrix
+--todo row form of (column-form) matrix
+--todo put matrix into one dimensional list and an integer telling the size
+
+--todo row sums
+rowSums :: Num a => Matrix a -> [a]
+rowSums (Matrix []) = []
+rowSums (Matrix (x:xs)) = sum x : rowSums (Matrix xs)
+
+-- --todo column sums
+-- column_sums :: Num a => Matrix a -> [a]
+-- column_sums
 
 -- mathematical operations
 
