@@ -76,13 +76,18 @@ column :: Num a => Matrix a -> Int -> [a]
 column (Matrix []) i = []
 column (Matrix (x:xs)) i = x !! i : (column (Matrix xs) i)
 
+withoutColumn :: Num a => Matrix a -> Int -> Matrix a
+withoutColumn a i = transpose (withoutColumnCalc a i 0)
+
+-- only a wrapper for without column
+-- returns transposed !!!
 -- returns all Matrix without column i
--- iteration counter needed
-withoutColumn :: Num a => Matrix a -> Int -> Int -> Matrix a
-withoutColumn a i cnt
-    | length (values a) == cnt = (Matrix [])
-    | cnt == i  = withoutColumn a i (cnt+1)
-    | otherwise = Matrix ((column a cnt) : values (withoutColumn a i (cnt+1)))
+-- iteration counter needed (second number passed in)
+withoutColumnCalc :: Num a => Matrix a -> Int -> Int -> Matrix a
+withoutColumnCalc a i cnt
+    | length ((values a) !! 0) == cnt = (Matrix [])
+    | cnt == i  = withoutColumnCalc a i (cnt+1)
+    | otherwise = Matrix ((column a cnt) : values (withoutColumnCalc a i (cnt+1)))
 
 --todo
 -- upperTri :: Int -> [[Int]]
@@ -102,18 +107,22 @@ withoutColumn a i cnt
 --todo row form of (column-form) matrix
 --todo put matrix into one dimensional list and an integer telling the size
 
---todo row sums
+-- Sums up all the rows and returns a list, in which each number represents a sum
 rowSums :: Num a => Matrix a -> [a]
 rowSums (Matrix []) = []
 rowSums (Matrix (x:xs)) = sum x : rowSums (Matrix xs)
 
--- --todo column sums
--- column_sums :: Num a => Matrix a -> [a]
--- column_sums
+--todo column sums
+-- Sums up all the columns and returns a list, in which each number represents a sum
+columnSums :: Num a => Matrix a -> [a]
+columnSums (Matrix []) = []
+columnSums matrix = sum (column matrix 0) : columnSums (withoutColumn matrix 0)
+
 
 -- mathematical operations
 
 transpose :: Num a => Matrix a -> Matrix a
+transpose (Matrix []) = (Matrix [])
 transpose (Matrix (x:xs))
     | length xs == 0  = vecPlode x
     | otherwise = matrixConn (vecPlode x) (transpose (Matrix xs))
