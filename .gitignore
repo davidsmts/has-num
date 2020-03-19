@@ -1,5 +1,5 @@
 .stack-work/
-num-linalg.cabal
+has-num.cabal
 *~
 .DS_Store
 dist

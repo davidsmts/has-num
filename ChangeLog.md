@@ -1,3 +1,3 @@
-# Changelog for num-linalg
+# Changelog for has-num
 
 ## Unreleased changes
