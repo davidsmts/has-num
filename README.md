@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/davidsmts/num-linalg/tree/master.svg?style=svg)](https://circleci.com/gh/davidsmts/num-linalg/tree/master)
+[![CircleCI](https://circleci.com/gh/davidsmts/has-num/tree/master.svg?style=svg)](https://circleci.com/gh/davidsmts/has-num/tree/master)
 
 # has-num
 Numerical algebraic computation in Haskell
