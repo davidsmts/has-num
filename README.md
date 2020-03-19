@@ -1,6 +1,6 @@
 [![CircleCI](https://circleci.com/gh/davidsmts/num-linalg/tree/master.svg?style=svg)](https://circleci.com/gh/davidsmts/num-linalg/tree/master)
 
-# num-linalg
+# has-num
 Numerical algebraic computation in Haskell
 aka collection of weird bugs or error messages
 
