@@ -45,12 +45,12 @@ matrixAdd :: Num a => Matrix a -> Matrix a -> Matrix a
 matrixAdd (Matrix (x:xs)) (Matrix(y:ys))
     | length xs == 0  = Matrix $ zipWith (+) x y : []
     | otherwise = Matrix $ zipWith (+) x y : values (matrixAdd (Matrix xs) (Matrix ys))
-    
+
 matrixSub :: Num a => Matrix a -> Matrix a -> Matrix a
 matrixSub (Matrix (x:xs)) (Matrix(y:ys))
     | length xs == 0  = Matrix $ zipWith (-) x y : []
     | otherwise = Matrix $ zipWith (-) x y : values (matrixSub (Matrix xs) (Matrix ys))
-        
+
 
 -- Matrix creation
 
@@ -70,6 +70,18 @@ unitCnt dim dimCnt
     | dimCnt-1 == 0   = Matrix (fillOneV 1 dimCnt dim : [])
     | otherwise     = Matrix $ (fillOneV 1 dimCnt dim) : values (unitCnt dim (dimCnt-1))
 
+
+-- vandermonde :: Num a => [a] -> Matrix a
+-- vandermonde coeffs
+--     | coeffs != null =
+--     | otherwise     = Matrix $ values (vecPlode coeff) : vandermonde
+
+vandermonize :: Num a => [a] -> [a]
+vandermonize coeffs
+    | length coeffs == 1 = [1]
+    | otherwise = (vandermonize coeffs_s) ++ [coefficient ** ((length coeffs)-1)]
+    where coefficient = coeffs !! 0
+          coeffs_s = take ((length coeffs)-1) coeffs
 
 -- returns column i
 column :: Num a => Matrix a -> Int -> [a]
@@ -92,8 +104,8 @@ withoutColumnCalc a i cnt
 --todo
 -- upperTri :: Int -> [[Int]]
 -- upperTri dim
---     | 
---     | otherwise = 
+--     |
+--     | otherwise =
 
 --todo find good way to iterate two dimensionally
 -- cuts a matrix into a Upper triangle matrix
@@ -146,7 +158,7 @@ matrixMultTransposed  :: Num a => Matrix a -> Matrix a -> Matrix a
 matrixMultTransposed (Matrix (x:xs)) b
     | length xs == 0 = Matrix $ (rowByColumns x b) : []
     | otherwise = Matrix $ (rowByColumns x b) : values (matrixMultTransposed (Matrix xs) b)
-     
+
 
 rowByColumns :: Num a => [a] -> Matrix a -> [a]
 rowByColumns a (Matrix (x:xs))
