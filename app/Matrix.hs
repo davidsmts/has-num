@@ -70,16 +70,17 @@ unitCnt dim dimCnt
     | dimCnt-1 == 0   = Matrix (fillOneV 1 dimCnt dim : [])
     | otherwise     = Matrix $ (fillOneV 1 dimCnt dim) : values (unitCnt dim (dimCnt-1))
 
+-- Muss noch größe und dimension übergeben werden?
+vandermonde :: Num a => [a] -> Matrix a
+vandermonde coeffs
+    | coeffs != null =
+    | otherwise     = Matrix $ (vandermonize coeffs) : vandermonde
 
--- vandermonde :: Num a => [a] -> Matrix a
--- vandermonde coeffs
---     | coeffs != null =
---     | otherwise     = Matrix $ values (vecPlode coeff) : vandermonde
-
-vandermonize :: Num a => [a] -> [a]
+-- Muss noch der koeffizient übergeben werden?
+vandermonize :: (Fractional a, Num a) => [a] -> [a]
 vandermonize coeffs
     | length coeffs == 1 = [1]
-    | otherwise = (vandermonize coeffs_s) ++ [coefficient ** ((length coeffs)-1)]
+    | otherwise = (vandermonize coeffs_s) ++ [coefficient ^^ ((length coeffs)-1)]
     where coefficient = coeffs !! 0
           coeffs_s = take ((length coeffs)-1) coeffs
 
@@ -145,6 +146,7 @@ vecPlode (x:xs)
     | length xs == 0  = Matrix $ [[x]]
     | otherwise = Matrix $ [x] : (values (vecPlode xs))
 
+--
 matrixConn :: Num a => Matrix a -> Matrix a -> Matrix a
 matrixConn (Matrix (x:xs)) (Matrix (y:ys))
     | length xs == 0  = Matrix $ [x ++ y]
