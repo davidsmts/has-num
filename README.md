@@ -5,7 +5,7 @@ Numerical algebraic computation in Haskell
 aka collection of weird bugs or error messages
 
 # Current state
-Just a work in progress
+In progress
 
 # Get Started
 - Get Stack : https://docs.haskellstack.org/en/stable/README/
