@@ -7,8 +7,10 @@
 
 --todo: Newton Grundpolynome
 
---polyInterp_divDiff :: (Fractional a, Num a) => [a] -> [a] -> a -> a
---polyInterp_divDiff ()
+polyInterp_divDiff :: (Fractional a, Num a) => [a] -> [a] -> a -> a
+polyInterp_divDiff xi yi x
+  | length yi == 0  = 0
+  | otherwise       = (polyInterp_divDiff (drop 1 xi) (drop 1 yi) x) + (dividedDifferences xi yi) * (newtonPolynom (drop 1 xi) x)
 
 newtonPolynom :: Num a => [a] -> a -> a
 newtonPolynom [] val = 1
